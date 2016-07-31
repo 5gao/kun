@@ -1,0 +1,201 @@
+<div class="container" >
+    <div class="row" style="height: 200px;">
+
+    </div>
+    <div class="row" style="color:#666">
+        <div class="col-md-4" style="padding-left:10px;padding-right:10px;">
+            <a>
+                <div class="clearfix"  style="color: #5e5e5e;background-color: #fff;padding-bottom: 15px;margin-left: 10px;">
+                    <div class="pull-left " >
+                        <h1>放款快</h1>
+                        <span style="margin: 0 0 10px;">满标时间更快，当天到帐！</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4" style="padding-left:10px;padding-right:10px;">
+            <a>
+                <div class="clearfix" style="color: #5e5e5e;background-color: #fff;padding-bottom: 15px;margin-left: 10px;">
+                    <div class="pull-left" >
+                        <h1>利息低</h1>
+                        <span style="margin: 0 0 10px;">利息低至9.9%</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4" style="padding-left:10px;padding-right:10px;">
+            <a>
+                <div class="clearfix" style="color: #5e5e5e;background-color: #fff;padding-bottom: 15px;margin-left: 10px;">
+                    <div class="pull-left clearfix" style="margin-left: 10px;">
+                        <h1>借款容易</h1>
+                        <span style="margin: 0 0 10px;">支持多种抵押物</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-9" style="padding-left:10px;padding-right:10px;">
+            <div style="background-color: #fff;padding: 20px;padding-bottom: 15px;margin-left: 10px;">
+                <h3>精选推荐</h3>
+                <div class="row">
+                    <div class="col-md-4" ng-repeat="item in list" ng-if="!loading">
+                        <div class="invest-item">
+                            <div class="invest-item-icon novice" ng-if="item.loan_type==1"></div>
+                            <div class="invest-item-title">
+                                <a href="javascript://" target="_blank" title="item.title" ui-sref="loanView({loanNumber:item.loan_number})" >还款付息{{item.title}}</a>
+                            </div>
+                            <div class="invest-item-subtitle" ng-switch="item.repay_type">
+                                <any ng-switch-when="1">按月还息</any>
+                                <any ng-switch-when="2">贴现</any>
+                            </div>
+                            <div class="progress project-progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" ng-style="item.percent">
+                                </div>
+                            </div>
+                            <p class="project-info">
+                                <span class="decimal">{{item.used_amount}}&nbsp;/&nbsp;</span>
+                                <span class="decimal">{{item.amount}}</span>&nbsp;万
+                            </p>
+                            <div class="invest-item-features">
+                                <div>
+                                    <div class="invest-item-feature">
+                                        <div>
+                                            <span class="invest-item-profit">{{item.rate*12 | number:2}}</span>
+                                        </div>
+                                        <div>年化利率(%)</div>
+                                    </div>
+                                    <div class="split"></div>
+                                    <div class="invest-item-feature">
+                                        <div>
+                                            <span class="invest-item-profit">{{item.term}}</span>
+                                        </div>
+                                        <div>项目期限(月)</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="invest-item-button-wrap">
+                                    <a class="btn btn-primary" href="javascript://" target="_blank" ui-sref="loanView({loanNumber:item.loan_number})">
+                                        立即投标</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3" style="padding-left:10px;padding-right:10px;">
+            <div style="background-color: #fff;padding: 20px;padding-bottom: 15px;margin-left: 10px;">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{true:'active',false:''}[notice]" ng-click="changeContent(1)"><a>公告</a></li>
+                    <li ng-class="{true:'active',false:''}[question]" ng-click="changeContent(2)"><a>问题</a></li>
+                    <li ng-class="{true:'active',false:''}[news]" ng-click="changeContent(3)"><a>资讯</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-12" style="padding-left:10px;padding-right:10px;">
+            <div style="background-color: #fff;">
+                <div style="padding: 20px 20px 0 20px;margin-bottom: 100px">
+                    <div class="col-md-4" style="padding-left:10px;padding-right:10px;">
+                        <h3 style="margin-bottom: 15px;">最新借款<span style="font-size: 15px;margin-left: 10px;">怕错过投标？试试看<a>自动投标</a></span></h3>
+                    </div>
+                    <div class="col-md-7" style="padding-left:10px;padding-right:10px;margin-left: 40px;">
+                        <div class="col-md-3 right-line text-center" style="border-right:1px solid #ddd">
+                            <h1 style="font-size: 14px;">累计成交金额</h1>
+                            <h2 style="font-size: 20px;margin-top:0;margin-bottom: 0; ">63.3<span>万元</span></h2>
+                        </div>
+                        <div class="col-md-3 right-line text-center" style="border-right:1px solid #ddd">
+                            <h1 style="font-size: 14px;">累计成交笔数</h1>
+                            <h2 style="font-size: 20px;margin-top:0;margin-bottom: 0; ">4087<span>笔</span></h2>
+                        </div>
+                        <div class="col-md-3 right-line text-center" style="border-right:1px solid #ddd">
+                            <h1 style="font-size: 14px;">为用户累计赚取</h1>
+                            <h2 style="font-size: 20px;margin-top:0;margin-bottom: 0; ">4087<span>元</span></h2>
+                        </div>
+                        <div class="col-md-3 right-line text-center" >
+                            <h1 style="font-size: 14px;">满标平均用时</h1>
+                            <h2 style="font-size: 20px;margin-top:0;margin-bottom: 0; ">63.3<span>小时</span></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-hover" >
+                    <tbody style="display: table-row-group;vertical-align: middle;border-color: inherit;">
+                    <tr>
+                        <th>借款标题</th>
+                        <th>借款金额</th>
+                        <th>年化利率</th>
+                        <th>期限</th>
+                        <th>进度</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="item in list">
+                        <td>{{item.title}}</td>
+                        <td>{{item.amount}}</td>
+                        <td>{{item.apy}}</td>
+                        <td>{{item.term}}个月</td>
+                        <td ng-switch="item.item_status">
+                            <any ng-switch-when="1">投标中</any>
+                        </td>
+                        <td><a type="btn" class="btn" href="javascript://" target="_blank" ui-sref="loanView({loanNumber:item.loan_number})">投标</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align: center">
+                            <a href="javascript://" ui-sref="loan">查看更多</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+       <div class="col-md-12" style="padding-left:10px;padding-right:10px;">
+           <div style="background-color: #fff;margin-bottom: 20px;">
+               <ul class="nav nav-tabs">
+                   <li ng-class="{true:'active',false:''}[investProcess]"><a href="javascript://" ng-click="changeButton(1)">投资流程</a></li>
+                   <li ng-class="{true:'active',false:''}[loanProcess]"><a href="javascript://" ng-click="changeButton(2)">借款流程</a></li>
+               </ul>
+               <div class="row" ng-if="investProcess">
+                   <div class="col-md-3">
+                        <h2>注册认证</h2>
+                        <span>成为会员,确认信息</span>
+                   </div>
+                   <div class="col-md-3">
+                       <h2>账户充值</h2>
+                       <span>充值资金到平台</span>
+                   </div>
+                   <div class="col-md-3">
+                       <h2>选择投资项目</h2>
+                       <span>选择项目进行投资</span>
+                   </div>
+                   <div class="col-md-3">
+                       <h2>获取收益</h2>
+                       <span>获取收益和本金</span>
+                   </div>
+               </div>
+               <div class="row" ng-if="loanProcess">
+                   <div class="col-md-3">
+                       <h2>注册认证</h2>
+                       <span>成为会员,确认信息</span>
+                   </div>
+                   <div class="col-md-3">
+                       <h2>申请授信</h2>
+                       <span>申请质押物授信</span>
+                   </div>
+                   <div class="col-md-3">
+                       <h2>申请借款</h2>
+                       <span>发布借款信息</span>
+                   </div>
+                   <div class="col-md-3">
+                       <h2>资金提现</h2>
+                       <span>招标成功可提现</span>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+
+</div>

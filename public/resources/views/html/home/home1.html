@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row">
+        <div id="myCarousel" class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="../../static/img/01.jpg" alt="First slide">
+                    <div class="carousel-caption">数字资产的重要性</div>
+                </div>
+                <div class="item">
+                    <img src="../../static/img/02.jpeg" alt="Second slide">
+                    <div class="carousel-caption">域名的作用</div>
+                </div>
+                <div class="item">
+                    <img src="../../static/img/03.jpg" alt="Third slide">
+                    <div class="carousel-caption">如何投资自己</div>
+                </div>
+            </div>
+            <a class="carousel-control left" href="#myCarousel"
+               data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel"
+               data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+    <div class="row">
+    <div class="well" style="background-color:#D4D4D4;width:100%;height: 180px;margin-top: 50px;">
+        <div class="row">
+            <div class="col-md-6 col-md-push-4">致力于打造诚信互联网数字资产投资理财平台</div>
+        </div>
+        <div class="row" style="margin-top: 35px;">
+            <div class="col-md-2 col-md-push-2">
+                <a ng-mouseenter="changeShow(1)"><h3>域名服务</h3></a>
+            </div>
+            <div class="col-md-2 col-md-push-4">
+                <a ng-mouseenter="changeShow(2)"><h3>客户服务</h3></a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row" ng-hide="isShow">
+        <div class="col-md-3 " style="background-color:#71C671;height: 300px;">
+            <h3>域名服务</h3>
+        </div>
+        <div class="col-md-3 " style="height: 300px;">
+            <ul class="list-group">
+                <li class="list-group-item">域名展示服务</li>
+                <li class="list-group-item">域名管理服务</li>
+                <li class="list-group-item">域名代买服务</li>
+            </ul>
+        </div>
+        <div class="col-md-3 " style="background-color:#FFE4B5;height:300px;">
+            <div class="thumbnail">
+                <img src="/wp-content/uploads/2014/06/kittens.jpg"
+                     alt="域名估值">
+            </div>
+            <div class="caption">
+                <h3>敬请期待</h3>
+            </div>
+        </div>
+        <div class="col-md-3 " style="background-color:#7FFFD4;height:300px;">
+                <div class="thumbnail">
+                    <img src="/wp-content/uploads/2014/06/kittens.jpg"
+                         alt="域名终端推介">
+                </div>
+            <div class="caption">
+                <h3>敬请期待</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="isShow">
+        <div class="col-md-3 " style="background-color:#9BCD9B;height: 300px;">
+            <h3>客户服务</h3>
+        </div>
+        <div class="col-md-3 " style="background-color:#9370DB;height: 300px;">
+
+        </div>
+        <div class="col-md-3 " style="background-color:#FFE4B5;height:300px;">
+
+        </div>
+        <div class="col-md-3 " style="background-color:#7FFFD4;height:300px;">
+
+        </div>
+    </div>
+</div>

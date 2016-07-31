@@ -24,7 +24,7 @@ class User extends Model
      */
     public $timestamps = false;
 
-    protected $fillable = ['phone','umber','password','status','created    ','updated'];
+    protected $fillable = ['phone','umber','password','status','created','updated'];
 
     /**
      * @var string

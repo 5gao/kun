@@ -25,5 +25,5 @@ Route::get('/', function () {
 Route::get('api/user/list','UserController@getList');
 Route::post('api/user/login','UserController@login');
 Route::get('api/user/save','UserController@save');
-Route::get('api/plan/add','PlanController@add');
+Route::post('api/plan/add','PlanController@add');
 Route::get('api/plan/list','PlanController@getList');

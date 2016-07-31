@@ -29,6 +29,10 @@ class UserController extends Controller
         $userInfo = $user->exist($username);
         if($userInfo){
             if(md5($password) === $userInfo['password']){
+                if (Session::has('user'))
+                {
+                    Session::forget('user');
+                }
                 Session::push('user',$userInfo);
                 return response()->json(array('status'=>'1','msg'=>'ok','data'=>$userInfo));
             }else{

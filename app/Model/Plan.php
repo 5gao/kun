@@ -23,9 +23,14 @@ class Plan extends Model
      */
     public $timestamps = false;
 
-    protected $fillable = ['qno','title','describe','status','public','created','updated'];
-    public function __construct()
+    protected $uid = 0;
+    protected $username = '';
+
+    protected $fillable = ['qno','title','describe','uid','username','status','public','created','updated'];
+    public function __construct($uid = 0,$username = '')
     {
+        $this->uid = $uid;
+        $this->username = $username;
         parent::__construct($arr = array());
     }
 
@@ -56,14 +61,16 @@ class Plan extends Model
     public function add($data)
     {
         $plan = array();
-        $plan['qno'] = $data['qno'];
+        $plan['qno'] = 'P'.time();
         $plan['title'] = $data['title'];
         $plan['describe'] = $data['describe'];
+        $plan['uid'] = $this->uid;
+        $plan['username'] = $this->username;
         $plan['status'] = 1;
         $plan['public'] = $data['public'];
         $plan['created'] = date('Y-m-d H:i:s',time());
         $plan['updated'] = date('Y-m-d H:i:s',time());
-        $result =  Plan::create($plan);
+        $result =  DB::table($this->table)->insertGetId($plan);
         return $result;
     }
 

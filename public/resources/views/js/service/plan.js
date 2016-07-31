@@ -37,12 +37,12 @@ angular.module('PlanService',[
         });
         return defer.promise;
     };
-    var add = function(data){
+    var add = function(title,describe,public){
         var defer = $q.defer();
         $http.post('/api/plan/add',{
-            params:{
-                data:data
-            }
+            title:title,
+            describe:describe,
+            public:public
         }).success(function(res){
             defer.resolve(res);
         }).error(function(reason){

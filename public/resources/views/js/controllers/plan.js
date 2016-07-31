@@ -24,7 +24,18 @@ angular.module('PlanCtrl',[
             }
         };
     }])
-    .controller('AddPlanController',['$scope','PlanSvc',function($scope,PlanSvc){
-
-
+    .controller('AddPlanController',['$scope','$state','PlanSvc',function($scope,$state,PlanSvc){
+        function add(title,describe,public){
+            PlanSvc.add(title,describe,public).then(function(data){
+                if(data.status){
+                    alert('发布成功')
+                }
+            },function(){
+                alert('提交失败');
+            });
+        }
+        $scope.submit = function(){
+            if(!$scope.title || !$scope.describe)return false;
+            add($scope.title,$scope.describe,$scope.public);
+        };
     }]);

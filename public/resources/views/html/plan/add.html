@@ -1,0 +1,28 @@
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="firstname" class="col-sm-2 control-label">计划标题</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="firstname" ng-model="title" placeholder="请输入计划20个字呢">
+        </div>
+    </div>
+    <div class="form-group">
+        <label  class="col-sm-2 control-label">计划描述</label>
+        <div class="col-sm-10">
+            <textarea name="lastname" class="form-control" rows="3" ng-model="describe"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="public">计划公开
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" ng-click="submit()">提交</button>
+        </div>
+    </div>
+</form>

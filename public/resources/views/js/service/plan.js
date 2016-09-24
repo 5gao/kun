@@ -2,9 +2,22 @@ angular.module('PlanService',[
     'virtualApp'
 ]).factory('PlanSvc', ['$http', '$q', function ($http, $q) {
 
-    var getList = function () {
+    var getList = function (page,offset,keyword) {
         var defer = $q.defer();
-        $http.get('/api/plan/list').success(function (res) {
+        $http.post('/api/plan/list',{
+            page:page,
+            offset:offset,
+            keyword:keyword
+        }).success(function (res) {
+            defer.resolve(res);
+        }).error(function (reason) {
+            defer.reject(reason);
+        });
+        return defer.promise
+    };
+    var getHomeList = function () {
+        var defer = $q.defer();
+        $http.post('/api/home/list').success(function (res) {
             defer.resolve(res);
         }).error(function (reason) {
             defer.reject(reason);
@@ -14,9 +27,7 @@ angular.module('PlanService',[
     var view = function(id){
         var defer = $q.defer();
         $http.post('/api/plan/view',{
-            params:{
-                id:id
-            }
+            id:id
         }).success(function(res){
             defer.resolve(res);
         }).error(function(reason){
@@ -24,12 +35,10 @@ angular.module('PlanService',[
         });
         return defer.promise;
     };
-    var deleteQu = function(id){
+    var deletePlan = function(id){
         var defer = $q.defer();
         $http.post('/api/plan/delete',{
-            params:{
-                id:id
-            }
+            id:id
         }).success(function(res){
             defer.resolve(res);
         }).error(function(reason){
@@ -50,10 +59,38 @@ angular.module('PlanService',[
         });
         return defer.promise;
     };
+    var updateStatus = function(id,status){
+        var defer = $q.defer();
+        $http.post('/api/plan/status/update',{
+            id:id,
+            status:status
+        }).success(function(res){
+            defer.resolve(res);
+        }).error(function(reason){
+            defer.reject(reason);
+        });
+        return defer.promise;
+    };
+    var updatePublic = function(id,public){
+        var defer = $q.defer();
+        $http.post('/api/plan/public/update',{
+            id:id,
+            public:public
+        }).success(function(res){
+            defer.resolve(res);
+        }).error(function(reason){
+            defer.reject(reason);
+        });
+        return defer.promise;
+    };
     return {
         getList : getList,
         add:add,
         view:view,
-        delete:deleteQu
+        deletePlan:deletePlan,
+        getHomeList:getHomeList,
+        updateStatus:updateStatus,
+        updatePublic:updatePublic
+
     }
 }]);

@@ -1,3 +1,4 @@
+<!--
 <div class="row" style="height:400px;">
     <div class="col-md-4 col-md-offset-1">
         你的事业，从狨猴开始！
@@ -19,4 +20,24 @@
             </div>
         </form>
     </div>
+</div>-->
+<div class="container">
+    <form class="form-signin">
+        <!--<h2 class="form-signin-heading">登录</h2>-->
+        <label for="inputEmail" class="sr-only">用户名</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="用户名" ng-model="username" required autofocus>
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="password" id="inputPassword" class="form-control" ng-model="password" placeholder="密码" required >
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me">记住我
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="submit()">登录</button>
+    </form>
+</div> <!-- /container -->
+<div class="col-xs-12 col-lg-6 col-lg-offset-4">
+    <h2>没有账户?</h2>
+    <p>不用注册！第一次登录我们将会为你创建一个账户,请记住密码哦！为了能找回密码，请填写正确的手机号或者邮箱</p>
+    <p><a class="btn btn-default" href="javascript://" role="button">查看用户协议 &raquo;</a></p>
 </div>

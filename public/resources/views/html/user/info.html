@@ -1,0 +1,28 @@
+<div class="row" style="min-height:600px">
+    <div class="col-lg-2">
+        <img src="/resources/views/data/img/user/default.jpg"  class="img-rounded">
+    </div>
+    <div class="col-lg-8">
+        <div>
+            <h4>{{userInfo.username}}</h4>
+        </div>
+        <div>
+            <div ng-if="!status">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                <a ng-if="!userInfo.location" href="javascript://" ng-click="editLocation()">填写居住地</a>
+                <a ng-if="!userInfo.industry" href="javascript://" ng-click="editLocation()">填写行业</a>
+                <a ng-click="editStatus()" >修改</a>
+            </div>
+            <div ng-if="status">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                <input type="text" placeholder="Twitterhandle">
+                <!--<a ng-if="!userInfo.industry" href="javascript://" ng-click="editLocation()">填写行业</a>-->
+                <a ng-click="editStatus()" >修改</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="input-group">
+    <span class="glyphicon glyphicon-map-marker"></span>
+    <input type="text" class="form-control" placeholder="Twitterhandle">
+</div>

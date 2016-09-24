@@ -1,0 +1,72 @@
+<div class="col-md-8 col-md-offset-1">
+    <div class="input-group">
+        <input type="text" class="form-control" ng-model="keyword">
+        <a class="input-group-addon" href="javascript://" ng-click="search()">
+            <span class="glyphicon glyphicon-search">搜索</span>
+        </a>
+    </div>
+</div>
+<div class="col-md-2">
+    <a href="javascript://" ng-click="add()">
+        <button type="button" class="btn btn-primary">新增计划</button>
+    </a>
+</div>
+<div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-1">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>发布时间</th>
+            <th>更新时间</th>
+            <th>浏览量</th>
+            <th>收藏量</th>
+            <th>赞</th>
+            <th>状态</th>
+            <th>是否可见</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in myPlan">
+            <td>{{item.title}}</td>
+            <td>{{item.created}}</td>
+            <td>{{item.updated}}</td>
+            <td>{{item.views}}</td>
+            <td>{{item.collect}}</td>
+            <td>{{item.likes}}</td>
+            <td ng-if="item.plan_status==1">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        未完成
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="javascript://" ng-click="changeStatus(item.id,2)">完成</a></li>
+                        <li><a href="javascript://" ng-click="changeStatus(item.id,3)">放弃</a></li>
+                        <li><a href="javascript://" ng-click="changeStatus(item.id,4)">取消</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td ng-if="item.plan_status==2">完成</td>
+            <td ng-if="item.plan_status==3">已放弃</td>
+            <td ng-if="item.plan_status==4">已取消</td>
+            <td >
+                <div class="dropdown" ng-switch="item.public">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <a ng-switch-when="1">可见</a>
+                        <a ng-switch-when="2">仅自己可见</a>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li><a href="javascript://" ng-click="changePublic(item.id,1)" ng-switch-when="2">可见</a></li>
+                        <li><a href="javascript://" ng-click="changePublic(item.id,2)" ng-switch-when="1">仅自己可见</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <a href="javascript://" ng-click="remove(item.id)"><span class="glyphicon glyphicon-remove"></span></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

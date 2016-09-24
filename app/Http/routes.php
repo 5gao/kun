@@ -22,8 +22,17 @@ Route::controllers([
 Route::get('/', function () {
 	return view('index');
 });
-Route::get('api/user/list','UserController@getList');
+Route::post('api/user/list','UserController@getList');
 Route::post('api/user/login','UserController@login');
+Route::post('api/user/isLogin','UserController@isLogin');
+Route::get('api/user/loginOut','UserController@loginOut');
+Route::post('api/home/list','HomeController@getList');
 Route::get('api/user/save','UserController@save');
 Route::post('api/plan/add','PlanController@add');
-Route::get('api/plan/list','PlanController@getList');
+Route::post('api/plan/list','PlanController@getList');
+Route::post('api/plan/view','PlanController@view');
+Route::post('api/plan/public/update','PlanController@updatePublic');
+Route::post('api/plan/status/update','PlanController@updateStatus');
+Route::post('api/plan/delete','PlanController@delete');
+Route::post('api/collect/add','LikesController@addCollect');
+Route::post('api/collect/likes','LikesController@addLikes');

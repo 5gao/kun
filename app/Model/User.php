@@ -11,9 +11,11 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model
 {
+    const TB_PLAN = 'plan';
     /**
      * @var string
      */
@@ -24,7 +26,16 @@ class User extends Model
      */
     public $timestamps = false;
 
-    protected $fillable = ['phone','umber','password','status','created','updated'];
+    protected $fillable = ['username','phone','umber','password','status','created','updated','email',
+    'head_img','sex','ip','country','industry','school'];
+
+    protected $uid = 0;
+
+    public function __construct($uid=0)
+    {
+        $this->uid = $uid;
+        parent::__construct($attributes = array());
+    }
 
     /**
      * @var string
@@ -32,22 +43,29 @@ class User extends Model
     protected $error = '';
 
     /**
+     * @param $keyword
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function getList()
+    public function getList($keyword)
     {
-        $result = User::all();
-        return $result;
+        if($keyword){
+            $list = DB::table(self::TB_PLAN)->where('title','like','%'.$keyword.'%')->where('uid',$this->uid)->get();
+            $count = DB::table(self::TB_PLAN)->where('title','like',$keyword)->where('uid',$this->uid)->count('id');
+        }else{
+            $list = DB::table(self::TB_PLAN)->where('uid',$this->uid)->get();
+            $count = DB::table(self::TB_PLAN)->where('uid',$this->uid)->count('id');
+        }
+        return array('list'=>$list,'count'=>$count);
     }
 
     /**
-     * @param int $phone
+     * @param string $username
      * @return bool
      */
-    public function exist($phone)
+    public function exist($username)
     {
         try{
-            $result = User::where('phone','=',$phone)->firstOrFail();
+            $result = User::where('username','=',$username)->firstOrFail();
             return $result;
         }catch (Exception $e){
             $this->error = $e->getMessage();
@@ -58,16 +76,21 @@ class User extends Model
     public function register($username,$password)
     {
         $userInfo = array();
-        $userInfo['phone'] = $username;
+        $userInfo['username'] = $username;
         $userInfo['password'] = md5($password);
         $userInfo['number'] = time();
         $userInfo['status'] = 1;
         $userInfo['created'] = date('Y-m-d H:i:s',time());
         $userInfo['updated'] = date('Y-m-d H:i:s',time());
-        $result =  User::create($userInfo);
+        $result =  DB::table($this->table)->insert($userInfo);
         if($result){
             return $userInfo;
         }
         return $result;
+    }
+
+    public function userList()
+    {
+
     }
 }

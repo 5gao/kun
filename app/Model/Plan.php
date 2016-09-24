@@ -11,6 +11,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+
+
 class Plan extends Model
 {
     /**
@@ -26,7 +28,8 @@ class Plan extends Model
     protected $uid = 0;
     protected $username = '';
 
-    protected $fillable = ['qno','title','describe','uid','username','status','public','created','updated'];
+    protected $fillable = ['qno','title','describe','uid','username','status','public','created','updated',
+    'plan_status','collect','views','likes'];
     public function __construct($uid = 0,$username = '')
     {
         $this->uid = $uid;
@@ -37,9 +40,13 @@ class Plan extends Model
     /**
      *
      */
-    public function getList()
+    public function getList($page,$offset,$keyword)
     {
-        $result = DB::table($this->table)->get();
+        if($keyword){
+            $result = DB::table($this->table)->where('title','like','%'.$keyword.'%')->where('public',2)->get();
+        }else{
+            $result = DB::table($this->table)->where('public',2)->skip($page)->take($offset)->get();
+        }
         $count = DB::table($this->table)->count();
         return array('list'=>$result,'count'=>$count);
     }
@@ -54,7 +61,8 @@ class Plan extends Model
      */
     public function view($id)
     {
-        $result = Plan::find($id);
+        error_log('the id is '.$id);
+        $result = DB::table($this->table)->where('id',$id)->get();
         return $result;
     }
 
@@ -75,4 +83,36 @@ class Plan extends Model
     }
 
 
+    public function getHomeList()
+    {
+        $result = DB::table($this->table)->limit(10)->get();
+        return array('list'=>$result);
+    }
+
+    public function updatePublic($id,$public)
+    {
+        $bind = array('public'=>$public,'updated'=>date('Y-m-d H:i:s',time()));
+        $result = DB::table($this->table)->where('id',$id)->where('uid',$this->uid)->update($bind);
+        return $result;
+    }
+
+    public function updateStatus($id,$status)
+    {
+        $bind = array('plan_status'=>$status,'updated'=>date('Y-m-d H:i:s',time()));
+        $result = DB::table($this->table)->where('id',$id)->where('uid',$this->uid)->update($bind);
+        return $result;
+    }
+
+    public function updateLikes($id)
+    {
+        DB::update('update '.$this->table.' set likes = likes+1 where id = ?', [$id]);
+    }
+    public function updateCollect($id)
+    {
+        DB::update('update '.$this->table.' set collect = collect+1 where id = ?', [$id]);
+    }
+    public function deletePlan($id)
+    {
+        return DB::table($this->table)->where('id', $id)->where('uid',$this->uid)->delete();
+    }
 }

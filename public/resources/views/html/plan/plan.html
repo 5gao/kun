@@ -1,15 +1,19 @@
-<div class="col-md-10">
-    <div class="input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">搜索</span>
+<div>
+    <div class="col-md-8 col-md-offset-1">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="keyword">
+            <a class="input-group-addon" href="javascript://" ng-click="search()">
+                <span class="glyphicon glyphicon-search">搜索</span>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <a href="javascript://" ng-click="add()">
+            <button type="button" class="btn btn-primary">新增计划</button>
+        </a>
     </div>
 </div>
-<div class="col-md-2">
-    <a href="javascript://" ng-click="add()">
-        <button type="button" class="btn btn-primary">新增计划</button>
-    </a>
-</div>
-<div>
+<div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-1">
     <table class="table">
         <thead>
         <tr>
@@ -21,15 +25,28 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in planList">
-            <td>{{item.username}}</td>
+        <tr ng-repeat="item in planList" ng-click="view(item.id)">
+            <td><a href="javascript://" ng-click="view(item.id)">{{item.username}}</a></td>
             <td>{{item.title}}</td>
             <td>{{item.created}}</td>
-            <td>100</td>
+            <td>{{item.views}}</td>
             <td>
-                <a href="javascript://"><span class="glyphicon glyphicon-heart"></span></a>
+                {{item.collect}}<a href="javascript://" ng-click="collect(item.id,item.title);$event.stopPropagation();" ><span class="glyphicon glyphicon-star-empty"></span></a>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" ng-click="likes(item.id,item.title);$event.stopPropagation();">
+                    {{item.likes}}<span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
             </td>
         </tr>
         </tbody>
     </table>
+
 </div>
+<div class="col-lg-6 col-lg-offset-3 col-xs-6 col-xs-3">
+    <ul class="pager">
+        <li class="previous"><a href="javascript://" ng-click="oldPage()">&larr; 上一页</a></li>
+        <li class="next"><a href="javascript://" ng-click="nextPage()">下一页 &rarr;</a></li>
+    </ul>
+</div>
+

@@ -2,37 +2,60 @@
 <html lang="en" ng-app="virtualApp" ng-controller="AppCtrl">
 <head>
     <meta charset="UTF-8">
-    <title>狨猴</title>
-    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>简单计划</title>
+    <link href="/resources/views/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/views/css/main.css" rel="stylesheet">
 </head>
 <body>
-<div class="col-md-10 col-md-offset-1">
+<div>
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
-        <!--<div class="navbar-header">
-            <a class="navbar-brand" href="#">狨猴</a>
-        </diV>-->
         <div>
-            <ul class="nav navbar-nav">
-                <li><a ui-sref-active="active" href="javascript://" ui-sref="home"><span class="glyphicon glyphicon-home"></span>狨猴</a></li>
-                <li><a ui-sref-active="active" href="javascript://" ui-sref="plan" >计划</a></li>
-                <li><a ui-sref-active="active" href="javascript://" ui-sref="myPlan" ng-if="LoginStatus" >我的计划</a></li>
-                <!--<li><a ui-sref-active="active" href="javascript://" ui-sref="brand" >公司</a></li>
-                <li><a ui-sref-active="active" href="javascript://" ui-sref="brand" >品牌建设</a></li>
-                <li><a ui-sref-active="active" href="javascript://" ui-sref="place">渠道建设</a></li>-->
-                <!--<li><a ui-sref-active="active" href="javascript://">人才管理</a></li>
-                <li><a ui-sref-active="active" href="javascript://">升将通</a></li>-->
-                <!--<li><a ui-sref-active="active" href="javascript://">下载</a></li>-->
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref-active="active" href="javascript://" ui-sref="login" ng-if="!LoginStatus">登录</a></li>
-            </ul>
+            <div class="col-xs-6 col-lg-4 col-xs-offset-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref-active="active" href="javascript://" ui-sref="home"><span
+                                class="glyphicon glyphicon-home"></span>首页</a></li>
+                    <li>
+                        <a ui-sref-active="active" href="javascript://" ui-sref="plan">
+                            <span class="glyphicon glyphicon-tree-conifer"></span>计划
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref-active="active" href="javascript://" ui-sref="myPlan" ng-if="LoginStatus">
+                            <span class="glyphicon glyphicon-heart"></span> 我的计划</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-4 col-lg-4 col-xs-offset-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a ui-sref-active="active" href="javascript://" ui-sref="login" ng-if="!LoginStatus">登录</a>
+                    </li>
+                    <li class="dropdown" ng-if="LoginStatus">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript://">{{username}}</a>
+                        <ul class="dropdown-menu" style="width: 100px;">
+                            <li><a href="javascript://" ui-sref="user.userBasic">我的主页</a></li>
+                            <li><a href="javascript://" ng-click="loginOut()">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </div>
-<div class="col-md-10 col-md-offset-1">
+<div class="row">
     <div ui-view>
 
     </div>
+</div>
+<div class="col-md-12 col-md-offset" style="margin-bottom: -10px;">
+    <hr>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2016 hiplan.cn</p>
+            <p class="text-muted">备案号</p>
+        </div>
+    </footer>
 </div>
 <!-- JavaScripts -->
 <script src="/resources/views/lib/jquery/dist/jquery.min.js"></script>
@@ -48,5 +71,6 @@
 <script src="/resources/views/js/controllers/login.js"></script>
 <script src="/resources/views/js/service/user.js"></script>
 <script src="/resources/views/js/service/plan.js"></script>
+<script src="/resources/views/js/service/collect.js"></script>
 </body>
 </html>
